@@ -1,9 +1,15 @@
 .content {
-  background: lingthen(red, 30%)
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
 }
 
 .containerChar {
   height: 55px;
+  color: #4285f4;
+  font-weight: normal;
+  font-size: small;
+  font-family: arial,sans-serif;
 }
 
 .googleChar {
