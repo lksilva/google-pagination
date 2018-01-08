@@ -9,15 +9,38 @@ class Paging extends Component {
 	}
 
 	selectPage = (number) => {
-		this.setState({ current: number });
+		this.setState({ current: number }, () => this.checkToModifyPages());
 	};
 
+	checkToModifyPages = () => {
+		const maxInterval = this.state.numbersPages.length / 2;
+		const positionCurrentPage = this.state.numbersPages.indexOf(this.state.current);
+		if(positionCurrentPage > 5) {
+			const isNecessaryIncrement = positionCurrentPage > maxInterval;
+			if (isNecessaryIncrement) {
+				const diference = positionCurrentPage - maxInterval;
+				this.modifyPages(diference);
+			}
+		} else if(this.state.current > 5) {
+			const isNecessaryDecrement = positionCurrentPage < maxInterval; 
+			if (isNecessaryDecrement) {
+				const diference = positionCurrentPage - maxInterval;
+				this.modifyPages(diference);
+			}
+		}
+	}
+
+	modifyPages = (diference) => {
+		const incrementedPages = this.state.numbersPages.map(item => item + diference);
+		this.setState({ numbersPages: incrementedPages });
+	}
+
 	selectNext = () => {
-		this.setState({ current: this.state.current + 1 })
+		this.selectPage(this.state.current + 1);
 	}
 
 	selectPrevious = () => {
-		this.setState({ current: this.state.current - 1 });
+		this.selectPage(this.state.current + -1);
 	}
 
 	createNumberPage = (number) => {
