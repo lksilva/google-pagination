@@ -3,12 +3,29 @@ import styles from './Paging.scss';
 import Character from './Character.js';
 
 class Paging extends Component {
+	state = {
+		numbersPages: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+		current: 1
+	}
+
+	selectPage = (number) => {
+		console.log('Select this page');
+	};
+
+	createNumberPage = (number) => {
+		const isActive = number === this.state.current;
+		return <Character typeChar={isActive ? 'oCharActive' : 'oCharDefault'} isClickable={!isActive} label={number}/>
+	}
+	
+	createNumbersPage = (numbers) => {
+		return numbers.map(this.createNumberPage)
+	}
+
 	render() {
-		return(
+		return (
 			<div className={styles.content}>
 				<Character typeChar="gChar" isClickable={false} />
-				<Character typeChar="oCharActive" label="1" isClickable={false} />
-				<Character typeChar="oCharDefault" label="2" isClickable />
+				{this.createNumbersPage(this.state.numbersPages)}
 				<Character typeChar="gleChar" label="Próximo" isClickable />
 			</div>
 		);
