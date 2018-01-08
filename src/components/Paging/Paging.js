@@ -9,12 +9,16 @@ class Paging extends Component {
 	}
 
 	selectPage = (number) => {
-		console.log('Select this page');
+		this.setState({ current: number });
 	};
+
+	selectNext = () => {
+		this.setState({ current: this.state.current + 1 })
+	}
 
 	createNumberPage = (number) => {
 		const isActive = number === this.state.current;
-		return <Character typeChar={isActive ? 'oCharActive' : 'oCharDefault'} isClickable={!isActive} label={number}/>
+		return <Character key={number} selectPage={() => this.selectPage(number)} typeChar={isActive ? 'oCharActive' : 'oCharDefault'} isClickable={!isActive} label={number}/>
 	}
 	
 	createNumbersPage = (numbers) => {
@@ -26,7 +30,7 @@ class Paging extends Component {
 			<div className={styles.content}>
 				<Character typeChar="gChar" isClickable={false} />
 				{this.createNumbersPage(this.state.numbersPages)}
-				<Character typeChar="gleChar" label="Próximo" isClickable />
+				<Character selectPage={() => this.selectNext()} typeChar="gleChar" label="Próximo" isClickable />
 			</div>
 		);
 	}
