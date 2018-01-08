@@ -1,0 +1,34 @@
+.content {
+  background: lingthen(red, 30%)
+}
+
+.containerChar {
+  height: 55px;
+}
+
+.googleChar {
+  background: url('../../assets/google_sprites.png') no-repeat;
+  background-size: 167px;
+  height: 40px;
+  display: block;
+}
+
+.gChar {
+  background-position: -24px 0;
+  width: 28px;
+}
+
+.oCharActive {
+  background-position: -53px 0;
+  width: 20px;
+}
+
+.oCharDefault {
+  background-position: -74px 0;
+  width: 20px;
+}
+
+.gleChar {
+  background-position: -96px 0;
+  width: 71px;
+}
